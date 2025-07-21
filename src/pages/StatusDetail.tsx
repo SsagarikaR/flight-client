@@ -67,36 +67,39 @@ export default function ClientDetailPage() {
   };
 
   const handleExportReport = () => {
-    // Create a simple text report
-    const report = `
-      Service Status Report - ${client.name}
-      Generated: ${new Date().toLocaleString()}
-      =====================================
-      
-      Summary:
-      - Total Services: ${totalServices}
-      - Online: ${upServices}
-      - Offline: ${downServices}
-      - N/A: ${naServices}
-      
-      Detailed Status:
-      ${serviceEntries
-        .map(
-          ([name, service]) => `
-      ${name}:
-        Status: ${service.status.toUpperCase()}
-        Address: ${service.address || "N/A"}
-        Details: ${service.details}
-      `
-        )
-        .join("")}
-          `;
+    // Create CSV header
+    const csvHeader = "Service Name,Status,Address,Details,Timestamp\n";
 
-    const blob = new Blob([report], { type: "text/plain" });
+    // Create CSV rows
+    const csvRows = serviceEntries
+      .map(([name, service]) => {
+        // Escape commas and quotes in fields by wrapping in quotes
+        const escapeCsv = (field: string) => {
+          if (!field) return '""';
+          const str = String(field);
+          if (str.includes(",") || str.includes('"') || str.includes("\n")) {
+            return `"${str.replace(/"/g, '""')}"`;
+          }
+          return str;
+        };
+
+        return [
+          escapeCsv(name),
+          escapeCsv(service.status.toUpperCase()),
+          escapeCsv(service.address || "N/A"),
+          escapeCsv(service.details || "N/A"),
+          escapeCsv(new Date().toLocaleString()),
+        ].join(",");
+      })
+      .join("\n");
+
+    const csvContent = csvHeader + csvRows;
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${client.name.replace(/\s+/g, "_")}_status_report.txt`;
+    a.download = `${client.name.replace(/\s+/g, "_")}_status_report.csv`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
