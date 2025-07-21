@@ -4,7 +4,7 @@ import {
   StatusIndicator,
   StatusBadge,
 } from "../components/status/StatusIndicator";
-import { ServiceDetailsModal } from "../components/status/ServiceDetailModal";
+// import { ServiceDetailsModal } from "../components/status/ServiceDetailModal";
 import { flightClients, type FlightClient } from "../utils/data";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -24,10 +24,10 @@ export default function FlightStatusApp() {
     key: "name",
     order: "asc",
   });
-  const [selectedClient, setSelectedClient] = useState<FlightClient | null>(
-    null
-  );
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [selectedClient, setSelectedClient] = useState<FlightClient | null>(
+  //   null
+  // );
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Filter and sort data
   const filteredAndSortedData = useMemo(() => {
@@ -148,9 +148,9 @@ export default function FlightStatusApp() {
   };
 
   const handleViewDetails = (client: FlightClient) => {
-    // navigate(`/status/${client.id}`);
-    setSelectedClient(client);
-    setIsModalOpen(true);
+    navigate(`/status/${client.id}`);
+    // setSelectedClient(client);
+    // setIsModalOpen(true);
   };
 
   const getOverallStatus = (client: FlightClient): "up" | "down" | "na" => {
@@ -347,11 +347,11 @@ export default function FlightStatusApp() {
         />
 
         {/* Service Details Modal */}
-        <ServiceDetailsModal
+        {/* <ServiceDetailsModal
           client={selectedClient}
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
-        />
+        /> */}
       </div>
     </div>
   );
