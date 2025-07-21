@@ -9,11 +9,11 @@ import { flightClients, type FlightClient } from "../utils/data";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Eye, Server, AlertTriangle } from "lucide-react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Logo from "../assets/Logo.png";
 
 export default function FlightStatusApp() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [searchQuery, setSearchQuery] = useState("");
@@ -147,8 +147,8 @@ export default function FlightStatusApp() {
     setPage(1);
   };
 
-  const handleViewDetails = () => {
-    // navigate(`/status/${client.id}`);
+  const handleViewDetails = (client: FlightClient) => {
+    navigate(`/status/${client.id}`);
     // setSelectedClient(client);
     // setIsModalOpen(true);
   };
@@ -224,7 +224,7 @@ export default function FlightStatusApp() {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => handleViewDetails()}
+              onClick={() => handleViewDetails(client)}
               className="h-8 w-8 p-0 hover:bg-blue-100 cursor-pointer"
             >
               <Eye className="h-4 w-4 text-blue-600" />

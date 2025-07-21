@@ -116,7 +116,7 @@ export default function ClientDetailPage() {
                 className="hover:bg-gray-100"
               >
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Dashboard
+                Back to Home
               </Button>
 
               <div className="flex items-center gap-3">
@@ -321,20 +321,6 @@ export default function ClientDetailPage() {
             </div>
           </CardContent>
         </Card>
-
-        {/* Action Buttons */}
-        <div className="mt-8 flex justify-center gap-4">
-          <Button variant="outline" onClick={() => navigate("/status")}>
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Dashboard
-          </Button>
-          <Button onClick={handleRefresh} disabled={refreshing}>
-            <RefreshCw
-              className={`h-4 w-4 mr-2 ${refreshing ? "animate-spin" : ""}`}
-            />
-            {refreshing ? "Refreshing..." : "Refresh Status"}
-          </Button>
-        </div>
       </div>
     </div>
   );
