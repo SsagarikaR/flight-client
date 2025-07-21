@@ -489,7 +489,7 @@ export default function ClientDetailPage() {
                 className="hover:bg-gray-100"
               >
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Dashboard
+                Back to Home
               </Button>
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 bg-blue-600 rounded-lg flex items-center justify-center">
