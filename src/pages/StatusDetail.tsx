@@ -162,7 +162,7 @@ export default function ClientDetailPage() {
 
       <div className="max-w-[70%] mx-auto px-4 py-8">
         {/* Summary Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
@@ -228,18 +228,17 @@ export default function ClientDetailPage() {
             </CardContent>
           </Card>
         </div>
-
         {/* Last Updated Info */}
-        <Card className="mb-6">
-          <CardContent className="p-3">
-            <div className="flex items-center gap-2 text-sm text-gray-600">
-              <Clock className="h-4 w-4" />
-              <span>Last updated: {new Date().toLocaleString()}</span>
-              <span className="mx-2">•</span>
-              <span>Auto-refresh: Every 30 seconds</span>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="mb-4 flex items-center justify-between bg-white/60 backdrop-blur-sm rounded-lg px-4 py-2 border border-gray-200/50">
+          <div className="flex items-center gap-2 text-sm text-gray-600">
+            <Clock className="h-4 w-4" />
+            <span>Last updated: {new Date().toLocaleString()}</span>
+          </div>
+          <div className="flex items-center gap-1 text-xs text-gray-500">
+            <div className="h-2 w-2 bg-green-500 rounded-full animate-pulse"></div>
+            <span>Auto-refresh: 30s</span>
+          </div>
+        </div>
 
         {/* Service Details - Compact Layout */}
         <Card>
