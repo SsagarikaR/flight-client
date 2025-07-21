@@ -1,23 +1,36 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import tseslint from 'typescript-eslint'
-import { globalIgnores } from 'eslint/config'
+import hub from "@mindfiredigital/eslint-plugin-hub";
+import globals from "globals";
+import tsParser from "@typescript-eslint/parser";
 
-export default tseslint.config([
-  globalIgnores(['dist']),
+export default [
   {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      js.configs.recommended,
-      tseslint.configs.recommended,
-      reactHooks.configs['recommended-latest'],
-      reactRefresh.configs.vite,
+    ignores: [
+      "**/node_modules/**",
+      "**/test/**",
+      "**/ui/**",
+      "**/util/**",
+      "**/type/**",
+      "**/hooks/**",
+      "**/store/**",
+      "**/routes/**",
     ],
     languageOptions: {
-      ecmaVersion: 2020,
       globals: globals.browser,
+      parser: tsParser,
+      parserOptions: {
+        ecmaVersion: 2022,
+        sourceType: "module",
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+    plugins: {
+      hub: hub,
+    },
+    files: ["**/*.{js,jsx,ts,tsx}"],
+    rules: {
+      "hub/react-filename-pascalcase": "error",
     },
   },
-])
+];
