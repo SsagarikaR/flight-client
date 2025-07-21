@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  flight-status:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: flight-status
+    ports:
+      - "3000:80" # localhost:3000 → container:80
+    restart: always
