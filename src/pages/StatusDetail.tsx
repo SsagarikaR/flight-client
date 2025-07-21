@@ -110,8 +110,8 @@ export default function ClientDetailPage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
-        <div className="max-w-[70%] mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
+        <div className="max-w-[95%] sm:max-w-[85%] md:max-w-[75%] mx-auto px-4 py-6">
+          <div className="flex md:flex-row flex-col items-center justify-between">
             <div className="flex items-center gap-4">
               <Button
                 variant="ghost"
@@ -160,9 +160,9 @@ export default function ClientDetailPage() {
         </div>
       </div>
 
-      <div className="max-w-[70%] mx-auto px-4 py-8">
+      <div className=" max-w-[95%] sm:max-w-[85%] md:max-w-[75%] mx-auto px-4 py-8">
         {/* Summary Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
