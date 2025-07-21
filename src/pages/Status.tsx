@@ -147,8 +147,8 @@ export default function FlightStatusApp() {
     setPage(1);
   };
 
-  const handleViewDetails = (client: FlightClient) => {
-    navigate(`/status/${client.id}`);
+  const handleViewDetails = () => {
+    // navigate(`/status/${client.id}`);
     // setSelectedClient(client);
     // setIsModalOpen(true);
   };
@@ -224,7 +224,7 @@ export default function FlightStatusApp() {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => handleViewDetails(client)}
+              onClick={() => handleViewDetails()}
               className="h-8 w-8 p-0 hover:bg-blue-100 cursor-pointer"
             >
               <Eye className="h-4 w-4 text-blue-600" />
