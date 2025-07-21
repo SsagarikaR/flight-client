@@ -9,11 +9,11 @@ import { flightClients, type FlightClient } from "../utils/data";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Eye, Server, AlertTriangle } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import Logo from "../assets/Logo.png";
 
 export default function FlightStatusApp() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [searchQuery, setSearchQuery] = useState("");
