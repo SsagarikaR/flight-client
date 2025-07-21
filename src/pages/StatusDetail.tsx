@@ -228,7 +228,7 @@ export default function ClientDetailPage() {
 
         {/* Last Updated Info */}
         <Card className="mb-6">
-          <CardContent className="p-4">
+          <CardContent className="p-3">
             <div className="flex items-center gap-2 text-sm text-gray-600">
               <Clock className="h-4 w-4" />
               <span>Last updated: {new Date().toLocaleString()}</span>
@@ -238,82 +238,66 @@ export default function ClientDetailPage() {
           </CardContent>
         </Card>
 
-        {/* Service Details */}
+        {/* Service Details - Compact Layout */}
         <Card>
-          <CardHeader>
+          <CardHeader className="pb-4">
             <CardTitle className="text-lg font-semibold">
               Service Status Details
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
+          <CardContent className="p-0">
+            <div className="divide-y divide-gray-100">
               {serviceEntries.map(([serviceName, service]) => (
                 <div
                   key={serviceName}
-                  className="border rounded-lg p-6 hover:bg-gray-50/50 transition-colors"
+                  className="px-6 py-4 hover:bg-gray-50/50 transition-colors"
                 >
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center gap-4">
-                      <StatusIndicator status={service.status} size="lg" />
-                      <div>
-                        <h4 className="text-lg font-medium text-gray-900">
-                          {serviceName}
-                        </h4>
-                        {service.address && (
-                          <div className="flex items-center gap-2 text-sm text-gray-600 mt-1">
-                            <ExternalLink className="h-3 w-3" />
-                            <span className="font-mono bg-gray-100 px-2 py-1 rounded">
-                              {service.address}
-                            </span>
-                          </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3 flex-1 min-w-0">
+                      <StatusIndicator status={service.status} size="sm" />
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-3">
+                          <h4 className="font-medium text-gray-900 truncate">
+                            {serviceName}
+                          </h4>
+                          {service.address && (
+                            <div className="flex items-center gap-1 text-xs text-gray-500">
+                              <ExternalLink className="h-3 w-3" />
+                              <span className="font-mono bg-gray-100 px-2 py-1 rounded text-xs truncate max-w-[200px]">
+                                {service.address}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+
+                        {service.details && (
+                          <p className="text-sm text-gray-600 mt-1 line-clamp-1">
+                            {service.details}
+                          </p>
                         )}
                       </div>
                     </div>
 
-                    <Badge
-                      className={
-                        service.status === "up"
-                          ? "bg-green-100 text-green-800 border-green-200"
+                    <div className="flex items-center gap-3 ml-4">
+                      <div className="text-right text-xs text-gray-500">
+                        <div>{new Date().toLocaleTimeString()}</div>
+                      </div>
+                      <Badge
+                        variant="secondary"
+                        className={
+                          service.status === "up"
+                            ? "bg-green-100 text-green-700 border-green-200 hover:bg-green-100"
+                            : service.status === "down"
+                            ? "bg-red-100 text-red-700 border-red-200 hover:bg-red-100"
+                            : "bg-gray-100 text-gray-600 border-gray-200 hover:bg-gray-100"
+                        }
+                      >
+                        {service.status === "up"
+                          ? "Online"
                           : service.status === "down"
-                          ? "bg-red-100 text-red-800 border-red-200"
-                          : "bg-gray-100 text-gray-600 border-gray-200"
-                      }
-                    >
-                      {service.status === "up"
-                        ? "Online"
-                        : service.status === "down"
-                        ? "Offline"
-                        : "N/A"}
-                    </Badge>
-                  </div>
-
-                  {service.details && (
-                    <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border-l-4 border-l-gray-300">
-                      <AlertCircle className="h-5 w-5 text-gray-500 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <p className="text-sm font-medium text-gray-700 mb-1">
-                          Status Details:
-                        </p>
-                        <p className="text-sm text-gray-600">
-                          {service.details}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Additional service info */}
-                  <div className="mt-4 pt-4 border-t border-gray-100">
-                    <div className="grid grid-cols-2 gap-4 text-sm">
-                      <div>
-                        <span className="text-gray-500">Service Type:</span>
-                        <span className="ml-2 font-medium">{serviceName}</span>
-                      </div>
-                      <div>
-                        <span className="text-gray-500">Last Check:</span>
-                        <span className="ml-2 font-medium">
-                          {new Date().toLocaleTimeString()}
-                        </span>
-                      </div>
+                          ? "Offline"
+                          : "N/A"}
+                      </Badge>
                     </div>
                   </div>
                 </div>
